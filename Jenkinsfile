@@ -9,7 +9,7 @@ pipeline {
         
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/sanju2/jenkins-cicd-pipeline.git'
+                git branch: 'main', url: 'https://github.com/pgopi527/jenkins-cicd-pipeline.git'
             }
         }
     
@@ -21,7 +21,7 @@ pipeline {
     
         stage('Sonarqube Analysis') {
             steps {
-                withSonarQubeEnv('sonar') {
+                withSonarQubeEnv('sonarqube') {
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=jenkins -Dsonar.projectName=jenkins"
                 }
             }
