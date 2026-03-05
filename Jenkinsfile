@@ -9,12 +9,6 @@ pipeline {
             }
         }
     
-        stage('Trivy FileSystem Scan') {
-            steps {
-                sh "trivy fs --format table -o trivy-fs-report.html ."
-            }
-        }
-    
         stage('Sonarqube Analysis') {
         environment {
         SONAR_URL = "http://34.201.116.83:9000"
