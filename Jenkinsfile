@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-    environment {
-        SCANNER_HOME= tool 'sonarqube'
-    }
 
     stages {
         
@@ -20,8 +16,11 @@ pipeline {
         }
     
         stage('Sonarqube Analysis') {
+        environment {
+        SONAR_URL = "http://34.201.116.83:9000"
+        }
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]){
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=jenkins -Dsonar.projectName=jenkins"
                 }
             }
