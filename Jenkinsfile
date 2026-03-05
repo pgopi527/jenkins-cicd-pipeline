@@ -14,7 +14,7 @@ pipeline {
         SONAR_URL = "http://34.201.116.83:9000"
         }
             steps {
-                withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]){
+                withCredentials([string(credentialsId: 'sonarqube']){
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=jenkins -Dsonar.projectName=jenkins"
                 }
             }
